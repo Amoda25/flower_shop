@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Bloomi Flowers</title>
+  <meta name="description" content="Browse our full menu of fresh flowers, bouquets, and arrangements. Sri Lanka's premier flower shop." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    🌸 Free delivery on orders over Rs. 5,000 &nbsp;|&nbsp; Hotline: <a href="tel:+94707898983">+94 70 789 8983</a>
+  </div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Bloomi <span>✿</span></a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html" class="active">Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html" class="nav-login-btn">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <h1>Our Flower Menu</h1>
+      <p>Handcrafted arrangements for every occasion and budget</p>
+    </div>
+    <img src="images/menu_hero_flower.png" class="hero-floral-img" alt="Floral Decoration" />
+    <img src="images/menu_hero_flower.png" class="hero-floral-img-left" alt="Floral Decoration" style="filter: grayscale(1) brightness(2); transform: translateY(-50%) rotate(180deg);" />
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> <span>›</span> Menu
+  </div>
+
+  <!-- Cart Toast -->
+  <div id="cartToast" class="cart-toast">🛒 Added to cart!</div>
+
+  <!-- Menu Section -->
+  <section class="section">
+
+    <!-- ======= Category 01: Flower Bunches ======= -->
+    <div class="category-header">
+      <div class="section-title" style="text-align:left; margin-bottom:0;">
+        <span class="subtitle">Category 01</span>
+        <h2>Flower Bunches</h2>
+        <div class="divider" style="margin-left:0;"></div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_classic_romance.png" alt="Classic Romance" class="product-img" />
+          <div class="product-badge">Best Seller</div>
+        </div>
+        <div class="product-info">
+          <h3>Classic Romance</h3>
+          <p>12 premium red roses wrapped in elegant kraft paper with a satin ribbon. Ideal for anniversaries.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 3,500</span>
+            <button class="btn-order" onclick="addToCart('Classic Romance', 3500)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_pastel_dreams.png" alt="Pastel Dreams" class="product-img" />
+          <div class="product-badge new-badge">New</div>
+        </div>
+        <div class="product-info">
+          <h3>Pastel Dreams</h3>
+          <p>Soft pink, white and lavender mixed bunch — peonies, carnations and baby's breath.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 4,200</span>
+            <button class="btn-order" onclick="addToCart('Pastel Dreams', 4200)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_sunshine_burst.png" alt="Sunshine Burst" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Sunshine Burst</h3>
+          <p>10 vibrant sunflowers with yellow lilies, cheerful and long-lasting. Perfect birthday gift.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 2,800</span>
+            <button class="btn-order" onclick="addToCart('Sunshine Burst', 2800)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/menu_hero_flower.png" alt="Scarlet Passion" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Scarlet Passion</h3>
+          <p>Deep scarlet roses mixed with burgundy carnations and eucalyptus greens in a lush romantic bouquet.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 4,800</span>
+            <button class="btn-order" onclick="addToCart('Scarlet Passion', 4800)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_pastel_dreams.png" alt="Lush Garden" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Lush Garden</h3>
+          <p>Wild garden-style mixed flowers including stock, snapdragons, lisianthus and foliage — beautifully rustic.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 3,900</span>
+            <button class="btn-order" onclick="addToCart('Lush Garden', 3900)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/about_hero_flower.png" alt="Pure White Bliss" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Pure White Bliss</h3>
+          <p>All-white roses and white lilies symbolising purity and elegance. Perfect for bridal showers.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 4,000</span>
+            <button class="btn-order" onclick="addToCart('Pure White Bliss', 4000)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Category 02: Flower Arrangements ======= -->
+    <div class="category-header" style="margin-top:64px;">
+      <div class="section-title" style="text-align:left; margin-bottom:0;">
+        <span class="subtitle">Category 02</span>
+        <h2>Flower Arrangements</h2>
+        <div class="divider" style="margin-left:0;"></div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_bridal_elegance.png" alt="Bridal Elegance" class="product-img" />
+          <div class="product-badge premium-badge">Premium</div>
+        </div>
+        <div class="product-info">
+          <h3>Bridal Elegance</h3>
+          <p>Luxurious white roses and calla lilies in a cascading bridal bouquet with pearl pins. Bespoke for weddings.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 8,500</span>
+            <button class="btn-order" onclick="addToCart('Bridal Elegance', 8500)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/menu_hero_flower.png" alt="Petal Cascade" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Petal Cascade</h3>
+          <p>Dramatic floral centrepiece in a crystal vase — mixed premium flowers including orchids, roses and anthuriums.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 7,200</span>
+            <button class="btn-order" onclick="addToCart('Petal Cascade', 7200)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_classic_romance.png" alt="Garden Box" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Garden Box</h3>
+          <p>Curated blooms presented in a signature Bloomi wooden gift box. Includes ribbon, tissue paper and a personal card.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 6,500</span>
+            <button class="btn-order" onclick="addToCart('Garden Box', 6500)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_hatbox_chic.png" alt="Hatbox Chic" class="product-img" />
+          <div class="product-badge premium-badge">Premium</div>
+        </div>
+        <div class="product-info">
+          <h3>Hatbox Chic</h3>
+          <p>A full round arrangement of roses in our signature pink hat box. A glamorous gift for any special occasion.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 9,800</span>
+            <button class="btn-order" onclick="addToCart('Hatbox Chic', 9800)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/about_hero_flower.png" alt="Tropical Bliss" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Tropical Bliss</h3>
+          <p>Heliconia, ginger flowers, and anthuriums — locally grown tropicals uniquely styled by our expert florists.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 5,500</span>
+            <button class="btn-order" onclick="addToCart('Tropical Bliss', 5500)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Category 03: Individual Flowers ======= -->
+    <div class="category-header" style="margin-top:64px;">
+      <div class="section-title" style="text-align:left; margin-bottom:0;">
+        <span class="subtitle">Category 03</span>
+        <h2>Individual Flowers</h2>
+        <div class="divider" style="margin-left:0;"></div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_classic_romance.png" alt="Red Rose" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Red Rose (Single)</h3>
+          <p>Classic long-stem red rose, individually gift-wrapped. The ultimate symbol of love.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 350</span>
+            <button class="btn-order" onclick="addToCart('Red Rose (Single)', 350)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/about_hero_flower.png" alt="White Lily" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>White Lily</h3>
+          <p>Fresh imported white lily stem with 3–4 blooms. Elegant and fragrant. Available in single or bunch of 5.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 420</span>
+            <button class="btn-order" onclick="addToCart('White Lily', 420)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_pastel_dreams.png" alt="Pink Chrysanthemum" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Pink Chrysanthemum</h3>
+          <p>Locally grown large pink chrysanthemum stem, bright and long-lasting.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 180</span>
+            <button class="btn-order" onclick="addToCart('Pink Chrysanthemum', 180)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_purple_orchid.png" alt="Purple Orchid" class="product-img" />
+          <div class="product-badge new-badge">Exotic</div>
+        </div>
+        <div class="product-info">
+          <h3>Purple Orchid</h3>
+          <p>Exotic Dendrobium orchid spray with 8–10 blooms per stem. Strikingly beautiful and long-lasting.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 580</span>
+            <button class="btn-order" onclick="addToCart('Purple Orchid', 580)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/product_sunshine_burst.png" alt="Sunflower" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Sunflower</h3>
+          <p>Large, cheerful sunflower stem with a classic brown centre. A guaranteed mood-lifter. Sold per stem.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 220</span>
+            <button class="btn-order" onclick="addToCart('Sunflower', 220)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Category 04: Gift Add-ons ======= -->
+    <div class="category-header" style="margin-top:64px;">
+      <div class="section-title" style="text-align:left; margin-bottom:0;">
+        <span class="subtitle">Category 04</span>
+        <h2>Gift Add-ons &amp; Confectioneries</h2>
+        <div class="divider" style="margin-left:0;"></div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/addon_chocolate_box.png" alt="Bloomi Chocolate Box" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Bloomi Chocolate Box</h3>
+          <p>12-piece premium chocolate assortment in a signature Bloomi branded box. Pairs perfectly with any bouquet.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 2,400</span>
+            <button class="btn-order" onclick="addToCart('Bloomi Chocolate Box', 2400)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/addon_macarons.png" alt="Macarons" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Macarons (6 pcs)</h3>
+          <p>Assorted French macarons in pastel colours — classic flavours including rose, pistachio, chocolate and vanilla.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 1,800</span>
+            <button class="btn-order" onclick="addToCart('Macarons (6 pcs)', 1800)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/addon_chocolate_cake.png" alt="Gooey Chocolate Cake" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Gooey Chocolate Cake</h3>
+          <p>Rich, indulgent individual chocolate lava cake. A decadent sweet treat to complement your floral gift.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 1,400</span>
+            <button class="btn-order" onclick="addToCart('Gooey Chocolate Cake', 1400)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/addon_greeting_card.png" alt="Designer Greeting Card" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Designer Greeting Card</h3>
+          <p>Hand-drawn botanical greeting card by local artist Tharshana. Personalised message written inside.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 350</span>
+            <button class="btn-order" onclick="addToCart('Designer Greeting Card', 350)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="images/addon_scented_candle.png" alt="Scented Candle" class="product-img" />
+        </div>
+        <div class="product-info">
+          <h3>Scented Candle</h3>
+          <p>Bloomi signature rose &amp; jasmine scented soy candle in a glass jar. 30-hour burn time.</p>
+          <div class="product-footer">
+            <span class="product-price">Rs. 1,900</span>
+            <button class="btn-order" onclick="addToCart('Scented Candle', 1900)">🛒 Order Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Order CTA -->
+    <div style="background:linear-gradient(135deg, var(--pink-light), #fce4ec);border-radius:var(--radius);padding:40px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:60px;">
+      <div>
+        <h3 style="color:var(--rose);font-size:1.4rem;">Want a Custom Arrangement?</h3>
+        <p style="color:var(--text-body);margin-top:6px;font-size:0.95rem;">Reach out to us and our florists will design something uniquely yours.</p>
+      </div>
+      <a href="contact.html" class="btn-primary">Contact Us</a>
+    </div>
+
+  </section>
+
+  <!-- Cart Sidebar -->
+  <div id="cartSidebar" class="cart-sidebar">
+    <div class="cart-sidebar-header">
+      <h3>🛒 Your Cart</h3>
+      <button onclick="toggleCart()" class="cart-close-btn">✕</button>
+    </div>
+    <div id="cartItems" class="cart-items-list">
+      <p class="cart-empty-msg">Your cart is empty. Start adding beautiful blooms! 🌸</p>
+    </div>
+    <div class="cart-sidebar-footer">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <strong id="cartTotal">Rs. 0</strong>
+      </div>
+      <button id="confirmOrderBtn" onclick="confirmOrder()" class="btn-primary" style="width:100%;text-align:center;display:block;margin-top:16px;border:none;cursor:pointer;">Confirm Order ✅</button>
+    </div>
+  </div>
+  <div id="cartOverlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+  <!-- Floating Cart Button -->
+  <button class="floating-cart-btn" onclick="toggleCart()">
+    🛒 <span id="cartCount">0</span>
+  </button>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-upper">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="footer-logo">Bloomi <span>✿</span></span>
+          <p>Sri Lanka's premier flower shop. Handcrafted bouquets delivered fresh to your loved ones since 2015.</p>
+          <span class="footer-badge">🌹 Delivering Joy Since 2015</span>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Occasions</h4>
+          <ul>
+            <li><a href="menu.html">Birthday</a></li>
+            <li><a href="menu.html">Anniversary</a></li>
+            <li><a href="menu.html">Graduation</a></li>
+            <li><a href="menu.html">Weddings</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+94707898983">+94 70 789 8983</a></li>
+            <li><a href="mailto:hello@bloomi.lk">hello@bloomi.lk</a></li>
+            <li><a href="#">45, Flower Road, Colombo 07</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Bloomi Flowers. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" title="Facebook">f</a>
+        <a href="#" title="Instagram">&#9678;</a>
+        <a href="#" title="WhatsApp">&#128241;</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCartUI();
+      showToast();
+      if (!document.getElementById('cartSidebar').classList.contains('open')) {
+        toggleCart();
+      }
+    }
+
+    function removeFromCart(name) {
+      cart = cart.filter(item => item.name !== name);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const cartItems = document.getElementById('cartItems');
+      const cartTotal = document.getElementById('cartTotal');
+      const cartCount = document.getElementById('cartCount');
+      const confirmBtn = document.getElementById('confirmOrderBtn');
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p class="cart-empty-msg">Your cart is empty. Start adding beautiful blooms! 🌸</p>';
+        cartTotal.textContent = 'Rs. 0';
+        cartCount.textContent = '0';
+        if (confirmBtn) confirmBtn.disabled = true;
+        return;
+      }
+
+      let total = 0;
+      let count = 0;
+      let html = '';
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        count += item.qty;
+        html += `
+          <div class="cart-item">
+            <div class="cart-item-info">
+              <span class="cart-item-name">${item.name}</span>
+              <span class="cart-item-price">Rs. ${(item.price * item.qty).toLocaleString()} × ${item.qty}</span>
+            </div>
+            <button class="cart-remove-btn" onclick="removeFromCart('${item.name}')">✕</button>
+          </div>`;
+      });
+
+      cartItems.innerHTML = html;
+      cartTotal.textContent = 'Rs. ' + total.toLocaleString();
+      cartCount.textContent = count;
+      if (confirmBtn) confirmBtn.disabled = false;
+    }
+
+    function confirmOrder() {
+      if (cart.length === 0) return;
+
+      // Build order object
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const order = {
+        id: 'ORD-' + Date.now(),
+        date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
+        time: new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+        items: cart.map(i => ({ ...i })),
+        total: total,
+        status: 'Confirmed'
+      };
+
+      // Save to localStorage
+      const existing = JSON.parse(localStorage.getItem('bloomiOrders') || '[]');
+      existing.unshift(order);
+      localStorage.setItem('bloomiOrders', JSON.stringify(existing));
+
+      // Check if user logged in
+      const user = JSON.parse(localStorage.getItem('bloomiUser') || 'null');
+      cart = [];
+      updateCartUI();
+      toggleCart();
+
+      if (user) {
+        window.location.href = 'profile.html';
+      } else {
+        window.location.href = 'login.html?redirect=profile';
+      }
+    }
+
+    function toggleCart() {
+      const sidebar = document.getElementById('cartSidebar');
+      const overlay = document.getElementById('cartOverlay');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    }
+
+    function showToast() {
+      const toast = document.getElementById('cartToast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+  </script>
+
+<script src="nav-auth.js"></script></body>
+</html>

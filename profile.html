@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile — Bloomi Flowers</title>
+  <meta name="description" content="View your Bloomi Flowers profile and order history." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .profile-page { min-height: 100vh; background: #fff9fb; }
+
+    .profile-hero {
+      background: linear-gradient(135deg, #FA4E79 0%, #FF8FA7 50%, #fa4e79cc 100%);
+      padding: 60px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-hero::before {
+      content: '🌸';
+      position: absolute;
+      font-size: 200px;
+      opacity: 0.06;
+      top: -40px; right: -20px;
+      pointer-events: none;
+    }
+    .profile-avatar {
+      width: 100px; height: 100px;
+      background: rgba(255,255,255,0.2);
+      border: 3px solid rgba(255,255,255,0.5);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 16px;
+      backdrop-filter: blur(10px);
+    }
+    .profile-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .profile-hero p { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+    .profile-hero .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 5px 18px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 12px;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Stats bar */
+    .profile-stats-bar {
+      background: #fff;
+      box-shadow: 0 4px 24px rgba(250,78,121,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin: -30px auto 0;
+      max-width: 700px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+    }
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 22px 16px;
+      border-right: 1px solid #fce4ec;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #FA4E79;
+    }
+    .stat-label { font-size: 0.78rem; color: #b08090; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* Main content */
+    .profile-content {
+      max-width: 860px;
+      margin: 40px auto 60px;
+      padding: 0 24px;
+    }
+
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #1a0a10;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(to right, #fce4ec, transparent);
+      border-radius: 2px;
+    }
+
+    /* Order cards */
+    .order-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(250,78,121,0.07);
+      border: 1px solid rgba(255,135,167,0.15);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .order-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, #fff9fb, #fce4ec20);
+      border-bottom: 1px solid #fce4ec;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .order-id {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #FA4E79;
+      letter-spacing: 1px;
+    }
+    .order-date { font-size: 0.82rem; color: #b08090; }
+    .order-status {
+      padding: 5px 16px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .status-confirmed { background: #d4edda; color: #155724; }
+    .status-pending   { background: #fff3cd; color: #856404; }
+    .status-delivered { background: #e8f5e9; color: #2e7d32; }
+    .status-cancelled { background: #fde8ea; color: #c0392b; }
+
+    .order-items-list { padding: 16px 24px; }
+    .order-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #fce4ec;
+      font-size: 0.9rem;
+    }
+    .order-item-row:last-child { border-bottom: none; }
+    .order-item-name { color: #1a0a10; font-weight: 600; }
+    .order-item-qty  { color: #b08090; font-size: 0.82rem; margin-left: 8px; }
+    .order-item-price { color: #FA4E79; font-weight: 700; }
+
+    .order-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      background: #fff9fb;
+      border-top: 1px solid #fce4ec;
+    }
+    .order-total-label { font-size: 0.85rem; color: #7a4a58; }
+    .order-total-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #FA4E79;
+    }
+
+    /* Empty state */
+    .empty-orders {
+      text-align: center;
+      padding: 60px 24px;
+      background: #fff;
+      border-radius: 16px;
+      border: 2px dashed #fce4ec;
+    }
+    .empty-orders .empty-icon { font-size: 4rem; margin-bottom: 16px; }
+    .empty-orders h3 {
+      font-family: 'Playfair Display', serif;
+      color: #5a2e40;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+    .empty-orders p { color: #b08090; margin-bottom: 24px; }
+
+    /* Profile info card */
+    .profile-info-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(250,78,121,0.07);
+      border: 1px solid rgba(255,135,167,0.15);
+      padding: 28px 28px;
+      margin-bottom: 40px;
+    }
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #fce4ec;
+      font-size: 0.92rem;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-icon { font-size: 1.2rem; width: 28px; text-align: center; }
+    .info-label { color: #b08090; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; min-width: 80px; }
+    .info-value { color: #1a0a10; font-weight: 600; flex: 1; }
+
+    /* Logout */
+    .btn-logout {
+      background: none;
+      border: 1.5px solid #FA4E79;
+      color: #FA4E79;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-logout:hover { background: #FA4E79; color: #fff; }
+
+    /* Cancel Order Button */
+    .btn-cancel-order {
+      background: none;
+      border: 1.5px solid #e74c3c;
+      color: #e74c3c;
+      padding: 7px 18px;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.4px;
+    }
+    .btn-cancel-order:hover { background: #e74c3c; color: #fff; }
+
+    /* Cancel Confirm Modal */
+    .cancel-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,5,12,0.5);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .cancel-modal-overlay.open { display: flex; }
+    .cancel-modal {
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px 36px 28px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(250,78,121,0.2);
+      animation: fadeUp 0.25s ease;
+    }
+    .cancel-modal-icon { font-size: 3rem; margin-bottom: 12px; }
+    .cancel-modal h3 {
+      font-family: 'Playfair Display', serif;
+      color: #1a0a10;
+      margin-bottom: 8px;
+    }
+    .cancel-modal p { color: #b08090; font-size: 0.9rem; margin-bottom: 24px; }
+    .cancel-modal-btns { display: flex; gap: 12px; justify-content: center; }
+    .btn-cancel-confirm {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-cancel-confirm:hover { opacity:0.88; }
+    .btn-keep-order {
+      background: none;
+      border: 1.5px solid #fce4ec;
+      color: #5a2e40;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-keep-order:hover { border-color: #FA4E79; color: #FA4E79; }
+  </style>
+</head>
+<body class="profile-page">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    🌸 Free delivery on orders over Rs. 5,000 &nbsp;|&nbsp; Hotline: <a href="tel:+94707898983">+94 70 789 8983</a>
+  </div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Bloomi <span>✿</span></a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="profile.html" class="active">My Profile</a></li>
+          <li><a href="login.html" class="nav-login-btn" style="display:none">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Profile Hero -->
+  <div class="profile-hero" id="profileHero">
+    <div class="profile-avatar" id="profileAvatar">🌸</div>
+    <h1 id="profileName">My Profile</h1>
+    <p id="profileEmail">Loading...</p>
+    <span class="hero-badge">🌹 Bloomi Member</span>
+  </div>
+
+  <!-- Stats Bar -->
+  <div class="profile-stats-bar" id="statsBar">
+    <div class="stat-item">
+      <span class="stat-num" id="statOrders">0</span>
+      <span class="stat-label">Orders</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" id="statItems">0</span>
+      <span class="stat-label">Items Ordered</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" id="statSpent">0</span>
+      <span class="stat-label">Total Spent (Rs.)</span>
+    </div>
+  </div>
+
+  <!-- Main Profile Content -->
+  <div class="profile-content">
+
+    <!-- Account Info -->
+    <h2 class="section-heading" style="margin-top: 20px;">👤 Account Details</h2>
+    <div class="profile-info-card">
+      <div class="info-row">
+        <span class="info-icon">🧑</span>
+        <span class="info-label">Name</span>
+        <span class="info-value" id="infoName">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">✉️</span>
+        <span class="info-label">Email</span>
+        <span class="info-value" id="infoEmail">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">📞</span>
+        <span class="info-label">Phone</span>
+        <span class="info-value" id="infoPhone">—</span>
+      </div>
+      <div class="info-row" style="border-bottom:none; padding-top:18px;">
+        <button class="btn-logout" onclick="logout()">🚪 Logout</button>
+      </div>
+    </div>
+
+    <!-- Order History -->
+    <h2 class="section-heading">🛒 Order History</h2>
+    <div id="orderHistoryContainer">
+      <!-- Populated by JS -->
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-upper">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="footer-logo">Bloomi <span>✿</span></span>
+          <p>Sri Lanka's premier flower shop. Handcrafted bouquets delivered fresh to your loved ones since 2015.</p>
+          <span class="footer-badge">🌹 Delivering Joy Since 2015</span>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Occasions</h4>
+          <ul>
+            <li><a href="menu.html">Birthday</a></li>
+            <li><a href="menu.html">Anniversary</a></li>
+            <li><a href="menu.html">Graduation</a></li>
+            <li><a href="menu.html">Weddings</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+94707898983">+94 70 789 8983</a></li>
+            <li><a href="mailto:hello@bloomi.lk">hello@bloomi.lk</a></li>
+            <li><a href="#">45, Flower Road, Colombo 07</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Bloomi Flowers. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" title="Facebook">f</a>
+        <a href="#" title="Instagram">&#9678;</a>
+        <a href="#" title="WhatsApp">&#128241;</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cancel Order Modal -->
+  <div class="cancel-modal-overlay" id="cancelModal">
+    <div class="cancel-modal">
+      <div class="cancel-modal-icon">🌷</div>
+      <h3>Cancel This Order?</h3>
+      <p>Are you sure you want to cancel this order? This action cannot be undone.</p>
+      <div class="cancel-modal-btns">
+        <button class="btn-cancel-confirm" id="confirmCancelBtn">Yes, Cancel</button>
+        <button class="btn-keep-order" onclick="closeModal()">Keep Order</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let orders = JSON.parse(localStorage.getItem('bloomiOrders') || '[]');
+    let pendingCancelId = null;
+
+    // Load user from localStorage
+    const user = JSON.parse(localStorage.getItem('bloomiUser') || 'null');
+
+    if (!user) {
+      window.location.href = 'login.html?redirect=profile';
+    } else {
+      renderProfile();
+    }
+
+    function renderProfile() {
+      // Fill hero
+      document.getElementById('profileName').textContent = user.name || 'My Profile';
+      document.getElementById('profileEmail').textContent = user.email || '';
+      document.getElementById('profileAvatar').textContent = (user.name || 'U').charAt(0).toUpperCase();
+
+      // Fill info card
+      document.getElementById('infoName').textContent  = user.name  || '—';
+      document.getElementById('infoEmail').textContent = user.email || '—';
+      document.getElementById('infoPhone').textContent = user.phone || 'Not provided';
+
+      // Stats (exclude cancelled orders from total spent)
+      const activeOrders = orders.filter(o => o.status !== 'Cancelled');
+      const totalItems = activeOrders.reduce((s, o) => s + o.items.reduce((ss, i) => ss + i.qty, 0), 0);
+      const totalSpent = activeOrders.reduce((s, o) => s + o.total, 0);
+      document.getElementById('statOrders').textContent = orders.length;
+      document.getElementById('statItems').textContent  = totalItems;
+      document.getElementById('statSpent').textContent  = totalSpent.toLocaleString();
+
+      // Order history
+      const container = document.getElementById('orderHistoryContainer');
+      if (orders.length === 0) {
+        container.innerHTML = `
+          <div class="empty-orders">
+            <div class="empty-icon">🌸</div>
+            <h3>No orders yet!</h3>
+            <p>You haven't placed any orders with us yet. Browse our menu and treat someone special.</p>
+            <a href="menu.html" class="btn-primary">Browse Menu</a>
+          </div>`;
+        return;
+      }
+
+      let html = '';
+      orders.forEach(order => {
+        const statusClass = {
+          'Confirmed': 'status-confirmed',
+          'Pending':   'status-pending',
+          'Delivered': 'status-delivered',
+          'Cancelled': 'status-cancelled'
+        }[order.status] || 'status-confirmed';
+
+        const canCancel = order.status === 'Confirmed' || order.status === 'Pending';
+
+        const itemsHtml = order.items.map(item => `
+          <div class="order-item-row">
+            <span>
+              <span class="order-item-name">${item.name}</span>
+              <span class="order-item-qty">× ${item.qty}</span>
+            </span>
+            <span class="order-item-price">Rs. ${(item.price * item.qty).toLocaleString()}</span>
+          </div>`).join('');
+
+        const cancelBtn = canCancel
+          ? `<button class="btn-cancel-order" onclick="askCancel('${order.id}')">✕ Cancel Order</button>`
+          : '';
+
+        html += `
+          <div class="order-card" id="card-${order.id}">
+            <div class="order-card-header">
+              <div>
+                <div class="order-id">${order.id}</div>
+                <div class="order-date">📅 ${order.date} &nbsp;·&nbsp; 🕐 ${order.time}</div>
+              </div>
+              <span class="order-status ${statusClass}">${order.status}</span>
+            </div>
+            <div class="order-items-list">${itemsHtml}</div>
+            <div class="order-card-footer">
+              <span class="order-total-label">Order Total</span>
+              <div style="display:flex;align-items:center;gap:14px;">
+                <span class="order-total-amount">Rs. ${order.total.toLocaleString()}</span>
+                ${cancelBtn}
+              </div>
+            </div>
+          </div>`;
+      });
+      container.innerHTML = html;
+    }
+
+    function askCancel(orderId) {
+      pendingCancelId = orderId;
+      document.getElementById('cancelModal').classList.add('open');
+    }
+
+    function closeModal() {
+      pendingCancelId = null;
+      document.getElementById('cancelModal').classList.remove('open');
+    }
+
+    document.getElementById('confirmCancelBtn').addEventListener('click', function () {
+      if (!pendingCancelId) return;
+      const idx = orders.findIndex(o => o.id === pendingCancelId);
+      if (idx !== -1) {
+        orders[idx].status = 'Cancelled';
+        localStorage.setItem('bloomiOrders', JSON.stringify(orders));
+      }
+      closeModal();
+      renderProfile();
+    });
+
+    // Close modal on overlay click
+    document.getElementById('cancelModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    function logout() {
+      localStorage.removeItem('bloomiUser');
+      window.location.href = 'index.html';
+    }
+  </script>
+  <script src="nav-auth.js"></script>
+
+</body>
+</html>
